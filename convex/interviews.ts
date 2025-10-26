@@ -43,7 +43,7 @@ export const getInterviewByStreamCallId = query({
       .withIndex('by_stream_call_id', (q) =>
         q.eq('streamCallId', args.streamCallId)
       )
-      .collect();
+      .first();
   },
 });
 
