@@ -1,6 +1,5 @@
 'use client';
 import { LoadingScreen } from '@/components/shared/LoadingSpinner';
-import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { INTERVIEW_CATEGORY } from '@/constants';
 import { api } from '@/convex/_generated/api';
@@ -9,7 +8,6 @@ import { getCandidateInfo, groupInterviews } from '@/lib/utils';
 import { Interview, InterviewStatus } from '@/types';
 import { useMutation, useQuery } from 'convex/react';
 import Link from 'next/link';
-import React, { useMemo } from 'react';
 import { toast } from 'sonner';
 import InterviewList from './_components/InterviewList';
 import InterviewItem from './_components/InterviewItem';
@@ -35,10 +33,8 @@ const DashboardPage = () => {
     return <LoadingScreen />;
   }
 
-  const groupedInterviews = useMemo(
-    () => groupInterviews(interviews),
-    [interviews]
-  );
+  const groupedInterviews = groupInterviews(interviews);
+
   return (
     <div className='container mx-auto py-10'>
       <div className='flex items-center mb-8'>

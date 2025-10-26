@@ -94,3 +94,4 @@ export const getInterviewerInfo = (users: User[], interviewerId: string) => {
         .join('') || 'UI',
   };
 };
+

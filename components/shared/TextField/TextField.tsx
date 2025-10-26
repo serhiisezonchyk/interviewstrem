@@ -12,7 +12,7 @@ interface TextFieldProps {
   className?: string;
 }
 
-export function TextField({
+const TextField = ({
   label,
   placeholder,
   value,
@@ -20,7 +20,7 @@ export function TextField({
   multiline = false,
   rows = 4,
   className,
-}: TextFieldProps) {
+}: TextFieldProps) => {
   return (
     <div className={cn('space-y-2', className)}>
       {label && <label className='text-sm font-medium'>{label}</label>}
@@ -42,4 +42,6 @@ export function TextField({
       )}
     </div>
   );
-}
+};
+
+export default TextField;

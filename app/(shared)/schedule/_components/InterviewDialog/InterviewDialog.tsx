@@ -1,6 +1,6 @@
 import CandidateSelect from '@/components/shared/CandidateSelect';
 import InterviewersSelect from '@/components/shared/InterviewersSelect';
-import { TextField } from '@/components/shared/TextField/TextField';
+import TextField from '@/components/shared/TextField';
 import { Button } from '@/components/ui/button';
 import { Calendar } from '@/components/ui/calendar';
 import {

@@ -1,3 +1,4 @@
+import CommentDialog from '@/components/shared/CommentDialog';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import {
@@ -82,6 +83,7 @@ const InterviewItem = ({
             </Button>
           </div>
         )}
+        <CommentDialog interviewId={interview._id} />
       </CardFooter>
     </Card>
   );
