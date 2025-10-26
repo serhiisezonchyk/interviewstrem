@@ -2,6 +2,7 @@
 import ActionCard from '@/components/shared/ActionCard';
 import LoadingSpinner from '@/components/shared/LoadingSpinner';
 import MeetingModal from '@/components/shared/MeetingModal';
+import UserInterviews from '@/components/shared/UserInterviews';
 import { QUICK_ACTIONS } from '@/constants';
 import useUserRole from '@/hooks/useUserRole';
 import { useRouter } from 'next/navigation';
@@ -66,7 +67,15 @@ export default function Home() {
         </>
       ) : (
         <>
-          <div> User view</div>
+          <div>
+            <h1 className='text-3xl font-bold'>Your interviews</h1>
+            <p className='text-muted-foreground mt-1'>
+              View and join your scheduled interview
+            </p>
+          </div>
+          <div className='mt-8'>
+            <UserInterviews />
+          </div>
         </>
       )}
     </div>

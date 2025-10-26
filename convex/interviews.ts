@@ -14,7 +14,7 @@ export const getAllInterviews = query({
 });
 
 export const getMyInterviews = query({
-  handler: async (ctx, args) => {
+  handler: async (ctx) => {
     const identity = await ctx.auth.getUserIdentity();
     if (!identity) {
       throw new Error('User is not authenticted');
