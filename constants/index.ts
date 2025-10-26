@@ -1,13 +1,14 @@
+import { InterviewCategoryType } from '@/types';
 import { Clock, Code2, Calendar, Users } from 'lucide-react';
 
-export const INTERVIEW_CATEGORY = [
+export const INTERVIEW_CATEGORY:InterviewCategoryType[] = [
   { id: 'upcoming', title: 'Upcoming Interviews', variant: 'outline' },
   { id: 'completed', title: 'Completed', variant: 'secondary' },
-  { id: 'succeeded', title: 'Succeeded', variant: 'default' },
+  { id: 'succeded', title: 'Succeeded', variant: 'default' },
   { id: 'failed', title: 'Failed', variant: 'destructive' },
 ] as const;
 
-export const TIME_SLOTS = [
+export const TIME_SLOTS: string[] = [
   '09:00',
   '09:30',
   '10:00',

@@ -10,7 +10,7 @@ import CodeEditorProblem from './CodeEditorProblem';
 import CodeEditoreExample from './CodeEditoreExample';
 import CodeEditorConstraints from './CodeEditorConstraints';
 import CodeEditorArea from './CodeEditorArea';
-type LanguagesType = 'javascript' | 'python' | 'java';
+import { LanguagesType } from '@/types';
 
 interface CodeEditorContextProps {
   code: string;
