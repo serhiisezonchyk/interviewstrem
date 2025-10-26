@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { toast } from 'sonner';
 import { useStreamVideoClient } from '@stream-io/video-react-sdk';
 import { useUser } from '@clerk/nextjs';
@@ -12,8 +12,15 @@ const useInterviewForm = () => {
   const createInterview = useMutation(api.interviews.createInterview);
   const users = useQuery(api.users.getUsers) ?? [];
 
-  const candidates = users?.filter((u) => u.role === 'user') ?? [];
-  const interviewers = users?.filter((u) => u.role === 'creator') ?? [];
+  const candidates = useMemo(
+    () => users.filter((u) => u.role === 'user'),
+    [users]
+  );
+
+  const interviewers = useMemo(
+    () => users.filter((u) => u.role === 'creator'),
+    [users]
+  );
 
   const [isCreating, setIsCreating] = useState(false);
   const [open, setOpen] = useState(false);
@@ -27,21 +34,30 @@ const useInterviewForm = () => {
     interviewerIds: user?.id ? [user.id] : [],
   });
 
-  const addInterviewer = (id: string) => {
-    if (!formData.interviewerIds.includes(id)) {
-      setFormData((p) => ({ ...p, interviewerIds: [...p.interviewerIds, id] }));
-    }
-  };
+  // 🔹 Memoized handlers (stable references)
+  const addInterviewer = useCallback(
+    (id: string) => {
+      setFormData((prev) =>
+        prev.interviewerIds.includes(id)
+          ? prev
+          : { ...prev, interviewerIds: [...prev.interviewerIds, id] }
+      );
+    },
+    [setFormData]
+  );
 
-  const removeInterviewer = (id: string) => {
-    if (id === user?.id) return;
-    setFormData((p) => ({
-      ...p,
-      interviewerIds: p.interviewerIds.filter((i) => i !== id),
-    }));
-  };
+  const removeInterviewer = useCallback(
+    (id: string) => {
+      if (id === user?.id) return;
+      setFormData((prev) => ({
+        ...prev,
+        interviewerIds: prev.interviewerIds.filter((i) => i !== id),
+      }));
+    },
+    [user?.id]
+  );
 
-  const scheduleMeeting = async () => {
+  const scheduleMeeting = useCallback(async () => {
     if (!client || !user) return;
     if (!formData.candidateId || formData.interviewerIds.length === 0) {
       toast.error('Please select both candidate and at least one interviewer');
@@ -96,7 +112,7 @@ const useInterviewForm = () => {
     } finally {
       setIsCreating(false);
     }
-  };
+  }, [client, user, formData, createInterview]);
 
   return {
     client,

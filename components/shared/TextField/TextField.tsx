@@ -30,6 +30,7 @@ export function TextField({
           placeholder={placeholder}
           rows={rows}
           value={value}
+          className='break-all'
           onChange={(e) => onChange(e.target.value)}
         />
       ) : (

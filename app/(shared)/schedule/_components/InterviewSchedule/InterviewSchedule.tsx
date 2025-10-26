@@ -2,6 +2,7 @@ import { api } from '@/convex/_generated/api';
 import { useQuery } from 'convex/react';
 import { Loader2Icon } from 'lucide-react';
 import InterviewDialog from '../InterviewDialog/InterviewDialog';
+import MeetingCard from '@/components/shared/MeetingCard';
 const InterviewSchedule = () => {
   const interviews = useQuery(api.interviews.getAllInterviews) ?? [];
 
@@ -24,8 +25,7 @@ const InterviewSchedule = () => {
       ) : interviews.length > 0 ? (
         <div className='grid gap-6 md:grid-cols-2 lg:grid-cols-3'>
           {interviews.map((i) => (
-            //TODO: MEETING CARD
-            <div></div>
+            <MeetingCard key={i._id} interview={i} />
           ))}
         </div>
       ) : (
