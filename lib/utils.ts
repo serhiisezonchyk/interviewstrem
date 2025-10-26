@@ -12,3 +12,16 @@ export const getFullName = (
 ) => {
   return (firstName || '' + ' ' + lastName || '').trim() || placeholder;
 };
+
+export const copyToClipboard = async (
+  data: any,
+  onSuccess?: () => void,
+  onError?: (error: any) => void
+) => {
+  try {
+    await navigator.clipboard.writeText(data);
+    onSuccess?.();
+  } catch (error) {
+    onError?.(error);
+  }
+};
