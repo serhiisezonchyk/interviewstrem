@@ -63,7 +63,7 @@ const CommentDialog = ({ interviewId }: CommentDialogProps) => {
         </Button>
       </DialogTrigger>
 
-      <DialogContent className='w-full sm:max-w-[550px] h-[400px] overflow-auto'>
+      <DialogContent className='w-full sm:max-w-[550px] max-h-[90vh] overflow-auto'>
         <DialogHeader>
           <DialogTitle>Interview Comment</DialogTitle>
         </DialogHeader>
