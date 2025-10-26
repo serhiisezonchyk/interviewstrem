@@ -2,10 +2,7 @@ import { v } from 'convex/values';
 import { mutation, query } from './_generated/server';
 
 export const getAllInterviews = query({
-  args: {
-    interviewId: v.id('interviews'),
-  },
-  handler: async (ctx, args) => {
+  handler: async (ctx) => {
     const identity = await ctx.auth.getUserIdentity();
     if (!identity) {
       throw new Error('User is not authenticted');
