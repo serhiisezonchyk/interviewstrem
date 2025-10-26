@@ -1,3 +1,4 @@
+import CodeEditor from '@/components/shared/CodeEditor';
 import EndCallButton from '@/components/shared/EndCallButton';
 import LoadingSpinner from '@/components/shared/LoadingSpinner';
 import { Button } from '@/components/ui/button';
@@ -96,7 +97,9 @@ const MeetingRoom = () => {
           </div>
         </ResizablePanel>
         <ResizableHandle withHandle />
-        <ResizablePanel defaultSize={65} minSize={25}></ResizablePanel>
+        <ResizablePanel defaultSize={65} minSize={25}>
+          <CodeEditor />
+        </ResizablePanel>
       </ResizablePanelGroup>
     </div>
   );
